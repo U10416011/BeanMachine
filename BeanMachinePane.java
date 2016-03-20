@@ -805,9 +805,9 @@ public class BeanMachinePane  extends Application {
 				case 118:
 					Routine(Ball,Dot1,Dot3,Dot5,Dot8,Dot11,Dot16,Dot28,bottom7);
 					break;
-					case 119:
-						Routine(Ball,Dot1,Dot3,Dot5,Dot8,Dot11,Dot16,Dot22,bottom7);
-						break;
+				case 119:
+					Routine(Ball,Dot1,Dot3,Dot5,Dot8,Dot11,Dot16,Dot22,bottom7);
+					break;
 				case 120:
 					Routine(Ball,Dot1,Dot3,Dot5,Dot8,Dot11,Dot16,Dot22,bottom8);
 					break;			
