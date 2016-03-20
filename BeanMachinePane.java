@@ -1,19 +1,52 @@
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.stage.Stage;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.geometry.Insets;
+import javafx.application.Application;
+import javafx.beans.binding.Bindings;
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.value.WritableObjectValue;
+import javafx.scene.Scene;
+import javafx.scene.layout.*;
+import javafx.stage.Stage;
+
+import java.util.Random;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
+import javafx.application.Application;
+import javafx.beans.property.DoubleProperty;
+import javafx.geometry.Pos;
+import javafx.scene.Node;
+import javafx.scene.control.Button;
+import javafx.scene.control.ScrollBar;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
+import javafx.util.Duration;
+import javafx.beans.property.ReadOnlyDoubleProperty;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCodeCombination;
+import javafx.scene.input.KeyCombination;
+import javafx.scene.paint.Color;
 
 
 
-public class BeanMachinePane  extends Application {
-
+public class BeanMachinePane  extends Application { 
+	double X = 0, Y = 0;
 	public void start(Stage primaryStage) {
 		//create a pane
 		Pane pane = new Pane();
-		
+			    
+	    
 		//create 28 circle as dots
 		Circle Dot1 = new Circle();
 		Dot1.setLayoutX(275);
@@ -239,6 +272,69 @@ public class BeanMachinePane  extends Application {
 		Dot28.setFill(Color.BLACK);
 		pane.getChildren().add(Dot28);
 		
+		Circle bottom1 = new Circle();
+		bottom1.setLayoutX(100);
+		bottom1.setLayoutY(350);
+		bottom1.setRadius(0.1);
+		bottom1.setStroke(Color.WHITE);
+		bottom1.setFill(Color.WHITE);
+		pane.getChildren().add(bottom1);
+		
+		Circle bottom2 = new Circle();
+		bottom2.setLayoutX(150);
+		bottom2.setLayoutY(350);
+		bottom2.setRadius(0.1);
+		bottom2.setStroke(Color.WHITE);
+		bottom2.setFill(Color.WHITE);
+		pane.getChildren().add(bottom2);
+		
+		Circle bottom3 = new Circle();
+		bottom3.setLayoutX(200);
+		bottom3.setLayoutY(350);
+		bottom3.setRadius(0.1);
+		bottom3.setStroke(Color.WHITE);
+		bottom3.setFill(Color.WHITE);
+		pane.getChildren().add(bottom3);
+		
+		Circle bottom4 = new Circle();
+		bottom4.setLayoutX(250);
+		bottom4.setLayoutY(350);
+		bottom4.setRadius(0.1);
+		bottom4.setStroke(Color.WHITE);
+		bottom4.setFill(Color.WHITE);
+		pane.getChildren().add(bottom4);
+		
+		Circle bottom5 = new Circle();
+		bottom5.setLayoutX(300);
+		bottom5.setLayoutY(350);
+		bottom5.setRadius(0.1);
+		bottom5.setStroke(Color.WHITE);
+		bottom5.setFill(Color.WHITE);
+		pane.getChildren().add(bottom5);
+		
+		Circle bottom6 = new Circle();
+		bottom6.setLayoutX(350);
+		bottom6.setLayoutY(350);
+		bottom6.setRadius(0.1);
+		bottom6.setStroke(Color.WHITE);
+		bottom6.setFill(Color.WHITE);
+		pane.getChildren().add(bottom6);
+		
+		Circle bottom7 = new Circle();
+		bottom7.setLayoutX(400);
+		bottom7.setLayoutY(350);
+		bottom7.setRadius(0.1);
+		bottom7.setStroke(Color.WHITE);
+		bottom7.setFill(Color.WHITE);
+		pane.getChildren().add(bottom7);
+		
+		Circle bottom8 = new Circle();
+		bottom8.setLayoutX(450);
+		bottom8.setLayoutY(350);
+		bottom8.setRadius(0.1);
+		bottom8.setStroke(Color.WHITE);
+		bottom8.setFill(Color.WHITE);
+		pane.getChildren().add(bottom8);
 		
 		//create line as side
 		Line Line1 = new Line();
@@ -338,16 +434,416 @@ public class BeanMachinePane  extends Application {
 		Line14.setEndX(375);
 		Line14.setEndY(350);
 		pane.getChildren().addAll(Line14);
-		
+			        
 		//create a scene
 		Scene scene = new Scene(pane,600,500);
+		//add action
+		scene.setOnMouseClicked(e ->{
+			X = 275;
+			Y = 50;
+			Circle Ball = new Circle();
+			pane.getChildren().add(Ball);
+			Ball.setCenterX(X);
+			Ball.setCenterY(Y);
+			Ball.setRadius(6);
+			//random color
+			Color color = new Color(Math.random(),Math.random(), Math.random(), 0.8);
+			Ball.setFill(color);
+			int d = new Random().nextInt(120)+1;
+			switch(d){//random path
+				case 1:
+					Routine(Ball,Dot1,Dot2,Dot6,Dot7,Dot12,Dot17,Dot23,bottom1);
+					break;
+				case 2:
+					Routine(Ball,Dot1,Dot2,Dot6,Dot7,Dot12,Dot17,Dot23,bottom2);
+					break;
+				case 3:
+					Routine(Ball,Dot1,Dot2,Dot6,Dot7,Dot12,Dot17,Dot24,bottom2);
+					break;
+				case 4:
+					Routine(Ball,Dot1,Dot2,Dot6,Dot7,Dot12,Dot17,Dot24,bottom3);
+					break;
+				case 5:
+					Routine(Ball,Dot1,Dot2,Dot6,Dot7,Dot12,Dot18,Dot24,bottom2);
+					break;
+				case 6:
+					Routine(Ball,Dot1,Dot2,Dot6,Dot7,Dot12,Dot18,Dot24,bottom3);
+					break;
+				case 7:
+					Routine(Ball,Dot1,Dot2,Dot6,Dot7,Dot12,Dot18,Dot25,bottom3);
+					break;
+				case 8:
+					Routine(Ball,Dot1,Dot2,Dot6,Dot7,Dot12,Dot18,Dot25,bottom4);
+					break;
+				case 9:
+					Routine(Ball,Dot1,Dot2,Dot6,Dot7,Dot13,Dot18,Dot24,bottom2);
+					break;
+				case 10:
+					Routine(Ball,Dot1,Dot2,Dot6,Dot7,Dot13,Dot18,Dot24,bottom3);
+					break;
+				case 11:
+					Routine(Ball,Dot1,Dot2,Dot6,Dot7,Dot13,Dot19,Dot25,bottom3);
+					break;
+				case 12:
+					Routine(Ball,Dot1,Dot2,Dot6,Dot7,Dot13,Dot19,Dot25,bottom4);
+					break;
+				case 13:
+					Routine(Ball,Dot1,Dot2,Dot6,Dot7,Dot13,Dot19,Dot26,bottom4);
+					break;
+				case 14:
+					Routine(Ball,Dot1,Dot2,Dot6,Dot7,Dot13,Dot19,Dot26,bottom5);
+					break;
+				case 15:
+					Routine(Ball,Dot1,Dot2,Dot6,Dot9,Dot13,Dot18,Dot24,bottom2);
+					break;
+				case 16:
+					Routine(Ball,Dot1,Dot2,Dot6,Dot9,Dot13,Dot18,Dot24,bottom3);
+					break;
+				case 17:
+					Routine(Ball,Dot1,Dot2,Dot6,Dot9,Dot13,Dot19,Dot25,bottom3);
+					break;
+				case 18:
+					Routine(Ball,Dot1,Dot2,Dot6,Dot9,Dot13,Dot19,Dot25,bottom4);
+					break;
+				case 19:
+					Routine(Ball,Dot1,Dot2,Dot6,Dot9,Dot13,Dot19,Dot26,bottom4);
+					break;
+				case 20:
+					Routine(Ball,Dot1,Dot2,Dot6,Dot9,Dot13,Dot19,Dot26,bottom5);
+					break;
+				case 21:
+					Routine(Ball,Dot1,Dot2,Dot6,Dot9,Dot14,Dot19,Dot25,bottom3);
+					break;
+				case 22:
+					Routine(Ball,Dot1,Dot2,Dot6,Dot9,Dot14,Dot19,Dot25,bottom4);
+					break;
+				case 23:
+					Routine(Ball,Dot1,Dot2,Dot6,Dot9,Dot14,Dot19,Dot26,bottom4);
+					break;
+				case 24:
+					Routine(Ball,Dot1,Dot2,Dot6,Dot9,Dot14,Dot19,Dot26,bottom5);
+					break;
+				case 25:
+					Routine(Ball,Dot1,Dot2,Dot6,Dot9,Dot14,Dot20,Dot26,bottom4);
+					break;
+				case 26:
+					Routine(Ball,Dot1,Dot2,Dot6,Dot9,Dot14,Dot20,Dot26,bottom5);
+					break;
+				case 27:
+					Routine(Ball,Dot1,Dot2,Dot6,Dot9,Dot14,Dot20,Dot27,bottom5);
+					break;
+				case 28:
+					Routine(Ball,Dot1,Dot2,Dot6,Dot9,Dot14,Dot20,Dot27,bottom6);
+					break;
+				case 29:
+					Routine(Ball,Dot1,Dot2,Dot4,Dot9,Dot13,Dot18,Dot24,bottom2);
+					break;
+				case 30:
+					Routine(Ball,Dot1,Dot2,Dot4,Dot9,Dot13,Dot18,Dot24,bottom3);
+					break;
+				case 31:
+					Routine(Ball,Dot1,Dot2,Dot4,Dot9,Dot13,Dot19,Dot25,bottom3);
+					break;
+				case 32:
+					Routine(Ball,Dot1,Dot2,Dot4,Dot9,Dot13,Dot19,Dot25,bottom4);
+					break;
+				case 33:
+					Routine(Ball,Dot1,Dot2,Dot4,Dot9,Dot13,Dot19,Dot26,bottom4);
+					break;
+				case 34:
+					Routine(Ball,Dot1,Dot2,Dot4,Dot9,Dot13,Dot19,Dot26,bottom5);
+					break;
+				case 35:
+					Routine(Ball,Dot1,Dot2,Dot4,Dot9,Dot14,Dot19,Dot25,bottom3);
+					break;
+				case 36:
+					Routine(Ball,Dot1,Dot2,Dot4,Dot9,Dot14,Dot19,Dot25,bottom4);
+					break;
+				case 37:
+					Routine(Ball,Dot1,Dot2,Dot4,Dot9,Dot14,Dot19,Dot26,bottom4);
+					break;
+				case 38:
+					Routine(Ball,Dot1,Dot2,Dot4,Dot9,Dot14,Dot19,Dot26,bottom5);
+					break;
+				case 39:
+					Routine(Ball,Dot1,Dot2,Dot4,Dot9,Dot14,Dot20,Dot26,bottom4);
+					break;
+				case 40:
+					Routine(Ball,Dot1,Dot2,Dot4,Dot9,Dot14,Dot20,Dot26,bottom5);
+					break;
+				case 41:
+					Routine(Ball,Dot1,Dot2,Dot4,Dot9,Dot14,Dot20,Dot27,bottom5);
+					break;
+				case 42:
+					Routine(Ball,Dot1,Dot2,Dot4,Dot9,Dot14,Dot20,Dot27,bottom6);
+					break;
+				case 43:
+					Routine(Ball,Dot1,Dot2,Dot4,Dot10,Dot14,Dot19,Dot25,bottom3);
+					break;
+				case 44:
+					Routine(Ball,Dot1,Dot2,Dot4,Dot10,Dot14,Dot19,Dot25,bottom4);
+					break;
+				case 45:
+					Routine(Ball,Dot1,Dot2,Dot4,Dot10,Dot14,Dot19,Dot26,bottom4);
+					break;
+				case 46:
+					Routine(Ball,Dot1,Dot2,Dot4,Dot10,Dot14,Dot19,Dot26,bottom5);
+					break;
+				case 47:
+					Routine(Ball,Dot1,Dot2,Dot4,Dot10,Dot14,Dot20,Dot26,bottom4);
+					break;
+				case 48:
+					Routine(Ball,Dot1,Dot2,Dot4,Dot10,Dot14,Dot20,Dot26,bottom5);
+					break;
+				case 49:
+					Routine(Ball,Dot1,Dot2,Dot4,Dot10,Dot14,Dot20,Dot27,bottom5);
+					break;
+				case 50:
+					Routine(Ball,Dot1,Dot2,Dot4,Dot10,Dot14,Dot20,Dot27,bottom6);
+					break;
+				case 51:
+					Routine(Ball,Dot1,Dot2,Dot4,Dot10,Dot15,Dot20,Dot26,bottom4);
+					break;
+				case 52:
+					Routine(Ball,Dot1,Dot2,Dot4,Dot10,Dot15,Dot20,Dot26,bottom5);
+					break;
+				case 53:
+					Routine(Ball,Dot1,Dot2,Dot4,Dot10,Dot15,Dot20,Dot27,bottom5);
+					break;
+				case 54:
+					Routine(Ball,Dot1,Dot2,Dot4,Dot10,Dot15,Dot20,Dot27,bottom6);
+					break;
+				case 55:
+					Routine(Ball,Dot1,Dot2,Dot4,Dot10,Dot15,Dot21,Dot27,bottom5);
+					break;
+				case 56:
+					Routine(Ball,Dot1,Dot2,Dot4,Dot10,Dot15,Dot21,Dot27,bottom6);
+					break;
+				case 57:
+					Routine(Ball,Dot1,Dot2,Dot4,Dot10,Dot15,Dot21,Dot28,bottom6);
+					break;
+				case 58:
+					Routine(Ball,Dot1,Dot2,Dot4,Dot10,Dot15,Dot21,Dot28,bottom7);
+					break;
+				case 59:
+					Routine(Ball,Dot1,Dot3,Dot4,Dot9,Dot13,Dot18,Dot24,bottom2);
+					break;
+				case 60:
+					Routine(Ball,Dot1,Dot3,Dot4,Dot9,Dot13,Dot18,Dot24,bottom3);
+					break;
+				case 61:
+					Routine(Ball,Dot1,Dot3,Dot4,Dot9,Dot13,Dot19,Dot25,bottom3);
+					break;
+				case 62:
+					Routine(Ball,Dot1,Dot3,Dot4,Dot9,Dot13,Dot19,Dot25,bottom4);
+					break;
+				case 63:
+					Routine(Ball,Dot1,Dot3,Dot4,Dot9,Dot13,Dot19,Dot26,bottom4);
+						break;
+				case 64:
+					Routine(Ball,Dot1,Dot3,Dot4,Dot9,Dot13,Dot19,Dot26,bottom5);
+					break;
+				case 65:
+					Routine(Ball,Dot1,Dot3,Dot4,Dot9,Dot14,Dot19,Dot25,bottom3);
+					break;
+				case 66:
+					Routine(Ball,Dot1,Dot3,Dot4,Dot9,Dot14,Dot19,Dot25,bottom4);
+					break;
+				case 67:
+					Routine(Ball,Dot1,Dot3,Dot4,Dot9,Dot14,Dot19,Dot26,bottom4);
+					break;
+				case 68:
+					Routine(Ball,Dot1,Dot3,Dot4,Dot9,Dot14,Dot19,Dot26,bottom5);
+					break;
+				case 69:
+					Routine(Ball,Dot1,Dot3,Dot4,Dot9,Dot14,Dot20,Dot26,bottom4);
+					break;
+				case 70:
+					Routine(Ball,Dot1,Dot3,Dot4,Dot9,Dot14,Dot20,Dot26,bottom5);
+					break;
+				case 71:
+					Routine(Ball,Dot1,Dot3,Dot4,Dot9,Dot14,Dot20,Dot27,bottom5);
+					break;
+				case 72:
+					Routine(Ball,Dot1,Dot3,Dot4,Dot9,Dot14,Dot20,Dot27,bottom6);
+					break;
+				case 73:
+					Routine(Ball,Dot1,Dot3,Dot4,Dot10,Dot14,Dot19,Dot25,bottom3);
+					break;
+				case 74:
+					Routine(Ball,Dot1,Dot3,Dot4,Dot10,Dot14,Dot19,Dot25,bottom4);
+					break;
+				case 75:
+					Routine(Ball,Dot1,Dot3,Dot4,Dot10,Dot14,Dot19,Dot26,bottom4);
+					break;
+				case 76:
+					Routine(Ball,Dot1,Dot3,Dot4,Dot10,Dot14,Dot19,Dot26,bottom5);
+					break;
+				case 77:
+					Routine(Ball,Dot1,Dot3,Dot4,Dot10,Dot14,Dot20,Dot26,bottom4);
+					break;
+				case 78:
+					Routine(Ball,Dot1,Dot3,Dot4,Dot10,Dot14,Dot20,Dot26,bottom5);
+					break;
+				case 79:
+					Routine(Ball,Dot1,Dot3,Dot4,Dot10,Dot14,Dot20,Dot27,bottom5);
+					break;
+				case 80:
+					Routine(Ball,Dot1,Dot3,Dot4,Dot10,Dot14,Dot20,Dot27,bottom6);
+					break;
+				case 81:
+					Routine(Ball,Dot1,Dot3,Dot4,Dot10,Dot15,Dot20,Dot26,bottom4);
+					break;
+				case 82:
+					Routine(Ball,Dot1,Dot3,Dot4,Dot10,Dot15,Dot20,Dot26,bottom5);
+					break;
+				case 83:
+					Routine(Ball,Dot1,Dot3,Dot4,Dot10,Dot15,Dot20,Dot27,bottom5);
+					break;
+				case 84:
+					Routine(Ball,Dot1,Dot3,Dot4,Dot10,Dot15,Dot20,Dot27,bottom6);
+					break;
+				case 85:
+					Routine(Ball,Dot1,Dot3,Dot4,Dot10,Dot15,Dot21,Dot27,bottom5);
+				break;
+				case 86:
+					Routine(Ball,Dot1,Dot3,Dot4,Dot10,Dot15,Dot21,Dot27,bottom6);
+					break;
+				case 87:
+					Routine(Ball,Dot1,Dot3,Dot4,Dot10,Dot15,Dot21,Dot28,bottom6);
+					break;
+				case 88:
+					Routine(Ball,Dot1,Dot3,Dot4,Dot10,Dot15,Dot21,Dot28,bottom7);
+					break;
+				case 89:
+					Routine(Ball,Dot1,Dot3,Dot5,Dot10,Dot14,Dot19,Dot25,bottom3);
+					break;
+				case 90:
+					Routine(Ball,Dot1,Dot3,Dot5,Dot10,Dot14,Dot19,Dot25,bottom4);
+					break;
+				case 91:
+					Routine(Ball,Dot1,Dot3,Dot5,Dot10,Dot14,Dot19,Dot26,bottom4);
+					break;
+				case 92:
+					Routine(Ball,Dot1,Dot3,Dot5,Dot10,Dot14,Dot19,Dot26,bottom5);
+					break;
+				case 93:
+					Routine(Ball,Dot1,Dot3,Dot5,Dot10,Dot14,Dot20,Dot26,bottom4);
+					break;
+				case 94:
+					Routine(Ball,Dot1,Dot3,Dot5,Dot10,Dot14,Dot20,Dot26,bottom5);
+					break;
+				case 95:
+					Routine(Ball,Dot1,Dot3,Dot5,Dot10,Dot14,Dot20,Dot27,bottom5);
+					break;
+				case 96:
+					Routine(Ball,Dot1,Dot3,Dot5,Dot10,Dot14,Dot20,Dot27,bottom6);
+					break;
+				case 97:
+					Routine(Ball,Dot1,Dot3,Dot5,Dot10,Dot15,Dot20,Dot26,bottom4);
+					break;
+				case 98:
+					Routine(Ball,Dot1,Dot3,Dot5,Dot10,Dot15,Dot20,Dot26,bottom5);
+					break;
+				case 99:
+					Routine(Ball,Dot1,Dot3,Dot5,Dot10,Dot15,Dot20,Dot27,bottom5);
+					break;
+				case 100:
+					Routine(Ball,Dot1,Dot3,Dot5,Dot10,Dot15,Dot20,Dot27,bottom6);
+					break;
+				case 101:
+					Routine(Ball,Dot1,Dot3,Dot5,Dot10,Dot15,Dot21,Dot27,bottom5);
+					break;
+				case 102:
+					Routine(Ball,Dot1,Dot3,Dot5,Dot10,Dot15,Dot21,Dot27,bottom6);
+					break;
+				case 103:
+					Routine(Ball,Dot1,Dot3,Dot5,Dot10,Dot15,Dot21,Dot28,bottom6);
+					break;
+				case 104:
+					Routine(Ball,Dot1,Dot3,Dot5,Dot10,Dot15,Dot21,Dot28,bottom7);
+					break;
+				case 105:
+					Routine(Ball,Dot1,Dot3,Dot5,Dot8,Dot15,Dot20,Dot26,bottom4);
+					break;
+				case 106:
+					Routine(Ball,Dot1,Dot3,Dot5,Dot8,Dot15,Dot20,Dot26,bottom5);
+					break;
+				case 107:
+					Routine(Ball,Dot1,Dot3,Dot5,Dot8,Dot15,Dot20,Dot27,bottom5);
+					break;
+				case 108:
+					Routine(Ball,Dot1,Dot3,Dot5,Dot8,Dot15,Dot20,Dot27,bottom6);
+					break;
+				case 109:
+					Routine(Ball,Dot1,Dot3,Dot5,Dot8,Dot15,Dot21,Dot27,bottom5);
+					break;
+				case 110:
+					Routine(Ball,Dot1,Dot3,Dot5,Dot8,Dot15,Dot21,Dot27,bottom6);
+					break;
+				case 111:
+					Routine(Ball,Dot1,Dot3,Dot5,Dot8,Dot15,Dot21,Dot28,bottom6);
+					break;
+				case 112:
+					Routine(Ball,Dot1,Dot3,Dot5,Dot8,Dot15,Dot21,Dot28,bottom7);
+					break;
+				case 113:
+					Routine(Ball,Dot1,Dot3,Dot5,Dot8,Dot11,Dot21,Dot27,bottom5);
+					break;
+				case 114:
+					Routine(Ball,Dot1,Dot3,Dot5,Dot8,Dot11,Dot21,Dot27,bottom6);
+					break;
+				case 115:
+					Routine(Ball,Dot1,Dot3,Dot5,Dot8,Dot11,Dot21,Dot28,bottom6);
+					break;
+				case 116:
+					Routine(Ball,Dot1,Dot3,Dot5,Dot8,Dot11,Dot21,Dot28,bottom7);
+					break;
+				case 117:
+					Routine(Ball,Dot1,Dot3,Dot5,Dot8,Dot11,Dot16,Dot28,bottom6);
+					break;
+				case 118:
+					Routine(Ball,Dot1,Dot3,Dot5,Dot8,Dot11,Dot16,Dot28,bottom7);
+					break;
+					case 119:
+						Routine(Ball,Dot1,Dot3,Dot5,Dot8,Dot11,Dot16,Dot22,bottom7);
+						break;
+				case 120:
+					Routine(Ball,Dot1,Dot3,Dot5,Dot8,Dot11,Dot16,Dot22,bottom8);
+					break;			
+			}			
+		});
 		primaryStage.setTitle("BeanMachinePane");
 		primaryStage.setScene(scene);
 		primaryStage.show();
+		
+		
+	}
+	//path method 
+	//the ball can move above the dot
+	public void Routine(Circle Ball,Circle Dots1 ,Circle Dots2,Circle Dots3,Circle Dots4,Circle Dots5,Circle Dots6,Circle Dots7,Circle bottom){
+		Timeline Routinego = new Timeline(
+			new KeyFrame(Duration.seconds(0),new KeyValue(Ball.centerYProperty(),50)),
+			new KeyFrame(Duration.seconds(0.1),new KeyValue(Ball.centerYProperty(),Dots1.getLayoutY()-15)),
+			new KeyFrame(Duration.seconds(0.2),new KeyValue(Ball.centerXProperty(),Dots2.getLayoutX())),
+			new KeyFrame(Duration.seconds(0.2),new KeyValue(Ball.centerYProperty(),Dots2.getLayoutY()-15)),
+			new KeyFrame(Duration.seconds(0.3),new KeyValue(Ball.centerXProperty(),Dots3.getLayoutX())),
+			new KeyFrame(Duration.seconds(0.3),new KeyValue(Ball.centerYProperty(),Dots3.getLayoutY()-15)),
+			new KeyFrame(Duration.seconds(0.4),new KeyValue(Ball.centerXProperty(),Dots4.getLayoutX())),
+			new KeyFrame(Duration.seconds(0.4),new KeyValue(Ball.centerYProperty(),Dots4.getLayoutY()-15)),
+			new KeyFrame(Duration.seconds(0.5),new KeyValue(Ball.centerXProperty(),Dots5.getLayoutX())),
+			new KeyFrame(Duration.seconds(0.5),new KeyValue(Ball.centerYProperty(),Dots5.getLayoutY()-15)),
+			new KeyFrame(Duration.seconds(0.6),new KeyValue(Ball.centerXProperty(),Dots6.getLayoutX())),
+			new KeyFrame(Duration.seconds(0.6),new KeyValue(Ball.centerYProperty(),Dots6.getLayoutY()-15)),
+			new KeyFrame(Duration.seconds(0.7),new KeyValue(Ball.centerXProperty(),Dots7.getLayoutX())),
+			new KeyFrame(Duration.seconds(0.7),new KeyValue(Ball.centerYProperty(),Dots7.getLayoutY()-15)),
+			new KeyFrame(Duration.seconds(0.8),new KeyValue(Ball.centerXProperty(),bottom.getLayoutX())),
+			new KeyFrame(Duration.seconds(0.85),new KeyValue(Ball.centerYProperty(),bottom.getLayoutY()-5)));
+			Routinego.play();
 	}
 	public static void main (String[] args) {
-		 Application.launch(args);  
+	    Application.launch(args);  
 
-    	}
+	}
 	
 }
